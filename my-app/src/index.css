@@ -1,0 +1,300 @@
+/** * Imports and plugins */
+@use postcss-custom-media;
+@use postcss-nested;
+@use postcss-simple-vars;
+@import url("https://fonts.googleapis.com/css?family=Eczar:400,700|Gentium+Basic");
+/** * Base */
+html {
+  height: 100%;
+  scroll-behavior: smooth;
+}
+body {
+  font-family: "Eczar", sans-serif;
+  font-weight: 400;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Eczar", sans-serif;
+}
+h2 {
+  font-family: "Eczar", sans-serif;
+  font-size: 26px;
+  font-weight: 700;
+  padding: 0;
+  margin: 56px 0 24px -1.883px;
+  text-align: left;
+  line-height: 34.5px;
+  letter-spacing: -0.45px;
+}
+p {
+  font-family: "Gentium Basic", serif;
+  margin-top: 21px;
+  font-size: 21px;
+  letter-spacing: -0.03px;
+  line-height: 1.58;
+}
+a {
+  color: brown;
+  text-decoration: none;
+}
+a:hover {
+  font-weight: bold;
+}
+
+.section {
+  margin: 0 auto;
+  max-width: 650px;
+  padding: 0 24px;
+}
+.section__text::first-letter {
+  font-size: 32px;
+}
+
+.hero {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100vh;
+}
+.hero__image {
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  clip: rect(0, auto, auto, 0);
+  background-image: url(https://res.cloudinary.com/mihael/image/upload/v1548409393/codepen/hero.jpg);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.hero__image--overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  background: linear-gradient(
+    to bottom,
+    rgba(121, 85, 72, 0) 0%,
+    rgba(121, 85, 72, 0.17) 21%,
+    rgba(121, 85, 72, 0.5) 80%
+  );
+}
+.hero__child {
+  position: fixed;
+  background-repeat: no-repeat;
+  backface-visibility: hidden;
+  opacity: 0.8;
+}
+.hero__child--primary {
+  top: -120px;
+  left: 50px;
+  width: 819px;
+  height: 1621px;
+  background-image: url(https://res.cloudinary.com/mihael/image/upload/v1548409393/codepen/cloud-2.png);
+}
+.hero__child--secondary {
+  top: 0;
+  right: 50px;
+  width: 300px;
+  height: 500px;
+  background-size: 300px auto;
+  background-image: url(https://res.cloudinary.com/mihael/image/upload/v1548409392/codepen/cloud-1.png);
+}
+.hero__title {
+  position: absolute;
+  bottom: 18vh;
+  left: 24vw;
+  right: 24vw;
+  z-index: 1;
+  opacity: 0;
+  font-size: calc(6px * 10);
+  line-height: calc(6px * 12);
+  color: white;
+  font-family: "Eczar", sans-serif;
+  font-weight: 200;
+  text-align: center;
+}
+@media screen and (min-width: 768px) {
+  .hero__title {
+    bottom: 15vh;
+    font-size: calc(6px * 16);
+    line-height: calc(6px * 18);
+  }
+}
+.hero__subtitle {
+  position: absolute;
+  bottom: 15vh;
+  left: 24vw;
+  right: 24vw;
+  color: white;
+  font-family: "Gentium Basic", serif;
+  font-size: 24px;
+  line-height: 32px;
+  text-align: center;
+}
+/** * Animation */
+.animation--floating {
+  animation-name: floating;
+  animation-duration: 200000ms;
+  animation-iteration-count: infinite;
+}
+.animation--title-in {
+  animation: title-in 800ms forwards ease-in-out 750ms;
+}
+.animation--from-top {
+  animation: from-top 350ms forwards cubic-bezier(0.65, 0.05, 0.36, 1);
+}
+.animation--from-bottom {
+  animation: from-bottom 350ms forwards cubic-bezier(0.65, 0.05, 0.36, 1);
+}
+/** * Keyframes for specific animation */
+@keyframes floating {
+  0% {
+    transform: translateY(0%);
+  }
+  50% {
+    transform: translateY(50%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}
+@keyframes title-in {
+  0% {
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-25%);
+  }
+  100% {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+}
+@keyframes from-top {
+  0% {
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-30%);
+  }
+  100% {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+}
+@keyframes from-bottom {
+  0% {
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(15%);
+  }
+  100% {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+}
+
+img {
+  width: 15rem;
+  height: 15rem;
+}
+
+.card {
+  text-align: center;
+}
+
+.footer {
+  background: #0a1828;
+  color: white;
+}
+.footer .links ul {
+  list-style-type: none;
+}
+.footer .links li a {
+  color: white;
+  transition: color 0.2s;
+}
+.footer .links li a:hover {
+  text-decoration: none;
+  color: #4180cb;
+}
+.footer .about-company i {
+  font-size: 25px;
+}
+.footer .about-company a {
+  color: white;
+  transition: color 0.2s;
+}
+.footer .about-company a:hover {
+  color: #4180cb;
+}
+.footer .location i {
+  font-size: 18px;
+}
+.footer .copyright p {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.cta {
+  position: relative;
+  margin: auto;
+  padding: 12px 18px;
+  transition: all 0.2s ease;
+  border: none;
+  background: none;
+}
+
+.cta:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  border-radius: 50px;
+  background: #e0a987;
+  width: 45px;
+  height: 45px;
+  transition: all 0.3s ease;
+}
+
+.cta span {
+  position: relative;
+  font-family: "Ubuntu", sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: #234567;
+}
+
+.cta svg {
+  position: relative;
+  top: 0;
+  margin-left: 10px;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke: #e0a987;
+  stroke-width: 2;
+  transform: translateX(-5px);
+  transition: all 0.3s ease;
+}
+
+.cta:hover:before {
+  width: 100%;
+  background: #deb499;
+}
+
+.cta:hover svg {
+  transform: translateX(0);
+}
+
+.cta:active {
+  transform: scale(0.95);
+}
